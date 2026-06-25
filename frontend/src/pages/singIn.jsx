@@ -45,7 +45,7 @@ const SingIn = () => {
             type="text"
             name="username"
             onChange={handleChange}
-            className="border border-gray-500 rounded-md px-5 py-2 w-full"
+            className="border-2 border-gray-500 rounded-md px-5 py-2 w-full"
             required
           />
           <h3 className=" font-sans text-xl">Email</h3>
@@ -53,7 +53,7 @@ const SingIn = () => {
             type="text"
             name="email"
             onChange={handleChange}
-            className="border border-gray-500 rounded-md px-5 py-2 w-full"
+            className="border-2 border-gray-500 rounded-md px-5 py-2 w-full"
             required
           />
           <h3 className="font-sans text-xl">Password</h3>
@@ -61,7 +61,7 @@ const SingIn = () => {
             type="password"
             name="password"
             onChange={handleChange}
-            className="border border-gray-500 rounded-md px-5 py-2 w-full"
+            className="border-2 border-gray-500 rounded-md px-5 py-2 w-full"
             required
           />
           <br />

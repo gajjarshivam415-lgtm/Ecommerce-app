@@ -8,6 +8,6 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use('/api/auth',authRouter)
-app.use('/product',productRoute)
+app.use('/api/product',productRoute)
 
 export default app

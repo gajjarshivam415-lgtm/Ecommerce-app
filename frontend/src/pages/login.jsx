@@ -53,7 +53,7 @@ const Login = () => {
             name="email"
             onChange={handleChange}
             value={form.email}
-            className="border border-gray-500 rounded-md px-5 py-2 w-full"
+            className="border-2  border-gray-500 rounded-md px-5 py-2 w-full"
             required
           />
           <h3 className="font-sans text-lg">Password</h3>
@@ -62,7 +62,7 @@ const Login = () => {
             name="password"
             onChange={handleChange}
             value={form.password}
-            className="border border-gray-500 rounded-md px-5 py-2 w-full"
+            className="border-2 border-gray-500 rounded-md px-5 py-2 w-full"
             required
           />
           <br />
