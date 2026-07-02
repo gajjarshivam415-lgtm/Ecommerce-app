@@ -10,19 +10,29 @@ const UpdateProduct = () => {
     title: "",
     description: "",
     price: "",
+    stock: "",
     category: "",
     image: "",
   });
 
-  useEffect(() => {
-    const getProduct = async () => {
-      const res = await api.get("/product/getAll");
-      const product = res.data.find((p) => p._id === id);
-      setForm(product);
-    };
+  // useEffect(() => {
+  //   const getProduct = async () => {
+  //     const res = await api.get("/product/getAll");
+  //     const product = res.data.find((p) => p._id === id);
+  //     setForm(product);
+  //   };
 
-    getProduct();
-  }, []);
+  //   getProduct();
+  // }, []);
+
+  const allowedFields = [
+    "title",
+    "description",
+    "price",
+    "stock",
+    "category",
+    "image",
+  ];
 
   const handleChange = (e) => {
     setForm({
@@ -30,12 +40,11 @@ const UpdateProduct = () => {
       [e.target.name]: e.target.value,
     });
   };
-  const allowedFields = ["title", "description", "price", "category", "image"];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      api.put(`/product/update/${id}`, form);
+      await api.put(`/product/update/${id}`, form);
       alert("Product updated successfully.");
       navigate("/admin/productList");
     } catch (err) {
@@ -43,13 +52,40 @@ const UpdateProduct = () => {
     }
   };
   return (
-    <div className="w-screen h-screen flex justify-center items-center bg-gray-200">
-      <div className="w-1/4 bg-white p-8 rounded-lg shadow-lg  flex flex-col items-center space-y-7">
+    // <div className="w-screen h-screen flex justify-center items-center bg-gray-200">
+    //   <div className="w-1/4 bg-white p-8 rounded-lg shadow-lg  flex flex-col items-center space-y-7">
+    //     <h2 className="text-3xl font-semibold text-cyan-700 py-5">
+    //       Update Product
+    //     </h2>
+    //     <form onSubmit={handleSubmit} className="space-y-7">
+    //       {allowedFields.map((key) => {
+    //         <input
+    //           key={key}
+    //           name={key}
+    //           value={form[key]}
+    //           onChange={handleChange}
+    //           placeholder={key}
+    //           className="w-full border px-3 py-2 rounded"
+    //         />;
+    //       })}
+
+    //       <button
+    //         type="submit"
+    //         className="bg-cyan-500 px-7 py-2 rounded-2xl active:scale-103"
+    //       >
+    //         Update
+    //       </button>
+    //     </form>
+    //   </div>
+    // </div>
+    <div className="max-w-screen h-screen flex flex-col items-center justify-center bg-gray-200 p-6 shadow rounded">
+      <div className="w-1/4 bg-white p-8 rounded-lg shadow-lg space-y-7">
         <h2 className="text-3xl font-semibold text-cyan-700 py-5">
-          Update Product
+          Edit Product
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-7">
-          {allowedFields.map((key) => {
+
+        <form className="space-y-3" onSubmit={handleSubmit}>
+          {allowedFields.map((key) => (
             <input
               key={key}
               name={key}
@@ -57,14 +93,11 @@ const UpdateProduct = () => {
               onChange={handleChange}
               placeholder={key}
               className="w-full border px-3 py-2 rounded"
-            />;
-          })}
+            />
+          ))}
 
-          <button
-            type="submit"
-            className="bg-cyan-500 px-7 py-2 rounded-2xl active:scale-103"
-          >
-            Update
+          <button className="w-full bg-cyan-500 px-7 py-2 rounded active:scale-103">
+            Update Product
           </button>
         </form>
       </div>
